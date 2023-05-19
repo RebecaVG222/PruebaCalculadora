@@ -1,3 +1,7 @@
+/**
+ * @author Rebeca Velez
+ * */
+
 package com.prueba.calculadora;
 
 import org.springframework.boot.SpringApplication;
@@ -6,6 +10,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
+/**
+ * Clase principal de la aplicacion
+ * */
 
 @SpringBootApplication
 @EnableJpaAuditing
