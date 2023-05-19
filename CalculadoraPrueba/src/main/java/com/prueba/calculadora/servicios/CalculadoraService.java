@@ -5,6 +5,7 @@ package com.prueba.calculadora.servicios;
 
 import java.math.BigDecimal;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
 /**Servicio CalculadoraService: permite calcular las opercacion de SUMAR o RESTAR dos numeros*/
@@ -19,7 +20,7 @@ public class CalculadoraService {
 	 * @param num2: segundo numero de la operacion
 	 * @param op: nombre de la operacion (SUMAR o RESTAR)
 	 * @return  resultado: resultado de la operacion*/
-
+	@ExceptionHandler 
 	public BigDecimal getResultado(BigDecimal num1, BigDecimal num2, String op) {
 		BigDecimal resultado= null;
 			if (op!=null & !op.equals("")) {
@@ -32,8 +33,7 @@ public class CalculadoraService {
 				else {
 					
 					System.out.println("La operacion no es correcta. En esta calculadora solo es posible SUMAR o RESTAR");		       		
-
-				}
+					}
 				}
 			return resultado;
 	

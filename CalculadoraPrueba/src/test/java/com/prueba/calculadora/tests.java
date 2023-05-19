@@ -4,7 +4,6 @@
 
 package com.prueba.calculadora;
 
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,12 +24,13 @@ public class tests {
 	@Autowired
 	CalculadoraService service;
 	
+	/**Puerto aleatorio*/
 	 @LocalServerPort
 	 int puerto;
 
-	//Test 1: SUMAR
+	/**Test 1: SUMAR dos numeros 25+63*/
 	@Test
-	public void test1() throws URISyntaxException  {	
+	public void test1() throws InterruptedException,URISyntaxException  {	
 		
 		RestTemplate template = new RestTemplate();
 	    String url = "http://localhost:" + puerto + "/api/calculadora?num1=" + 25 + "&num2=" + 63 + "&op=SUMAR" ;
@@ -39,7 +39,7 @@ public class tests {
 		assert(resultado != null );
 	}
 	
-	//Test 2: RESTAR
+	/**Test 2: RESTAR dos numeros 90-35*/
 	@Test
 	public void test2() throws InterruptedException, URISyntaxException {
 			RestTemplate template = new RestTemplate();

@@ -42,7 +42,7 @@ public class CalculadoraController {
 			resultado = this.service.getResultado(num1,num2, op);
 			
 		}
-		catch(Exception e) {
+		catch(NumberFormatException e) {
 			resultado = null;
 		}	
 		t.trace(resultado);
