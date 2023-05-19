@@ -7,7 +7,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.3</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath /> <!-- -->
 	</parent>
 	<groupId>test</groupId>
 	<artifactId>prueba</artifactId>
@@ -15,17 +15,9 @@
 	<name>TEST Rebeca</name>
 	<description>Test Server</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
@@ -34,48 +26,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-		</dependency>
-        <dependency>
-			    <groupId>com.h2database</groupId>
-			    <artifactId>h2</artifactId>
-			    <scope>compile</scope>
-			</dependency>
-
-                <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-		<dependency>
-      		<groupId>org.springdoc</groupId>
-      		<artifactId>springdoc-openapi-ui</artifactId>
-      		<version>1.6.13</version>
-   		</dependency>
    		 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> 
-	<dependency>
-      		<groupId>org.springdoc</groupId>
-      		<artifactId>springdoc-openapi-security</artifactId>
-      		<version>1.6.13</version>
-   		</dependency> 
+		</dependency>  
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -83,17 +41,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.11.0</version>
-		</dependency>
+		 <dependency>
+            <groupId>com.iteriam</groupId>
+            <artifactId>tracer</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 	</dependencies>
 
 	<build>
@@ -102,14 +54,32 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <groupId>com</groupId>
+                    <artifactId>tracer</artifactId>
+                    <version>1.0.0</version>
+                    <packaging>jar</packaging>
+                    <file>${basedir}/lib/tracer-1.0.0.jar</file>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install-jar-lib</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            
 		</plugins>
 	</build>
 

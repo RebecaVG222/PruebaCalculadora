@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-//import io.corp.calculator.TracerImpl;
+import io.corp.calculator.*;
 
 import com.prueba.calculadora.servicios.CalculadoraService;
 
@@ -22,11 +22,12 @@ public class CalculadoraController {
 	@Autowired
 	private CalculadoraService service;
 	
-  //  private TracerImpl t = new TracerImpl();
+
+   
 /**@param num1: primer numero de la operacion
  * @param num2: segundo numero de la operacion
  * @param op: nombre de la operacion (SUMAR o RESTAR)
- * @return  result: resultado de la operacion que devuelve el servicio
+ * @return  resultado: resultado de la operacion que devuelve el servicio
  * 
  * Descripcion: Metodo get para optener el resultado de la operacion*/
 
@@ -35,14 +36,17 @@ public class CalculadoraController {
             @RequestParam(name = "num2") BigDecimal num2,
             @RequestParam(name = "op") String op) throws Exception {
 		
-		BigDecimal result;
+		BigDecimal resultado;
+		TracerImpl t = new TracerImpl();
 		try {
-			result = this.service.getResultado(num1,num2, op);
+			resultado = this.service.getResultado(num1,num2, op);
+			
 		}
 		catch(Exception e) {
-			result = null;
+			resultado = null;
 		}	
-		return result;
+		t.trace(resultado);
+		return resultado;
 	}		
 }
 
